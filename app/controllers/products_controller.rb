@@ -22,7 +22,7 @@ class ProductsController < ApplicationController
   end
 
   def update
-    if @product.update(product_params)
+    if @product.update(update_product_params)
       render json: @product
     else
       render json: @product.errors, status: :unprocessable_entity
@@ -34,13 +34,15 @@ class ProductsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def product_params
       params.require(:product).permit(:name, :description, :sku, :stock, :status, :brand_id, :category_id)
+    end
+
+    def update_product_params
+      params.require(:product).permit(:name, :description, :status)
     end
 end
