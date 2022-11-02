@@ -1,5 +1,6 @@
 class BrandsController < ApplicationController
   before_action :set_brand, only: %i[ show update destroy ]
+  before_action :authentication
 
   def index
     @brands = Brand.all

@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show update destroy ]
+  before_action :authentication
 
   def index
     @products = Product.joins(:brand, :category)
